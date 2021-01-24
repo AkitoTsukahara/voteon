@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>Nothing here currently</p>
+    <p>Vote</p>
   </div>
 </template>
 
@@ -8,8 +8,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  mounted() {
-    this.$router.push({ path: '/votes/' })
-  },
+  layout: 'protected',
 })
 </script>
