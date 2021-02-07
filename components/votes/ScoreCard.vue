@@ -6,23 +6,8 @@
   >
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">{{ valueInfo.valueAction.title }}</div>
-      <ul class="list-disc mb-10" style="display: flex;height: 130px;">
-        <li
-          v-for="member in valueInfo.members"
-          :key="`member-${member.id}`"
-          class="text-sl ml-4"
-          style="height: 100px;text-align: center;line-height: 40px;list-style: none;"
-        >
-        <img
-          class="object-cover h-32 w-full"
-          :src="member.imgPath"
-          :alt="member.name"
-        />
-          {{ member.name }}
-        </li>
-      </ul>
       <div class="range-container">
-        <p class="text-sm">業務・チームで役に立ったか？</p>
+        <p class="text-sm">ビジネスに貢献できるか？</p>
         <div class="range-number">
           <div><p>😅</p></div>
           <div><p>😐</p></div>
@@ -34,7 +19,7 @@
       </div>
 
       <div class="range-container">
-        <p>Lifebook のおもしろい未来を描けたか？</p>
+        <p>周囲に良い影響を与えられるか？</p>
         <div class="range-number">
             <div><p>😅</p></div>
             <div><p>😐</p></div>
@@ -47,7 +32,7 @@
       </div>
 
       <div class="range-container">
-        <p>周囲を巻き込めたか？</p>
+        <p>組織の強みと発信できるものか？</p>
         <div class="range-number">
             <div><p>😅</p></div>
             <div><p>😐</p></div>
@@ -65,19 +50,10 @@
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
 
-type UserAction = {
-  title: string
-  targetValues: number[]
-  description: string
-  URL: string
-}
-
 type valueInfo = {
   id: number
-  memberId: number
   imgPath: string
   name: string
-  actions: UserAction[]
   point1: number
   point2: number
   point3: number

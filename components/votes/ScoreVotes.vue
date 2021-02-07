@@ -38,7 +38,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Card from '@/components/votes/ScoreCard.vue'
-//import { VOTE_TYPES, getValueActionData } from '@/data/data'
+import { getValueActionData } from '@/data/data'
 
 export default Vue.extend({
   data() {
@@ -52,17 +52,15 @@ export default Vue.extend({
   computed: {
     voteSections() {
       console.log("voteSections")
-      return this.$accessor.votes.voteSections
+      //return this.$accessor.votes.voteSections
     }
   },
-  async mounted() {
-    
-    // this.$accessor.votes.setVoteTypes(VOTE_TYPES)
-    // this.$accessor.votes.setActionLists({ actionLists: getValueActionData()})
-    // await this.$accessor.votes.getVotedData()
+  // async mounted() {
+  //   this.$accessor.votes.setActionLists({ actionLists: getValueActionData()})
+  //   await this.$accessor.votes.getVotedData()
 
-    // setTimeout(() => { this.show = true },3000)
-  },
+  //   setTimeout(() => { this.show = true },3000)
+  // },
   methods: {
     async onClickConfirm() {
     

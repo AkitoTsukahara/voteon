@@ -4,7 +4,7 @@
       <p class="text-2xl italic mb-10">選択タイプ</p>
       <p class="text-2xl italic font-bold"></p>
     </section>
-    <SelectVotes />
+    <!-- <SelectVotes /> -->
 
     <section class="top-section py-20">
       <p class="text-2xl italic mb-10">採点タイプ</p>
@@ -16,13 +16,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import SelectVotes from '@/components/votes/SelectVotes.vue'
+//import SelectVotes from '@/components/votes/SelectVotes.vue'
 import ScoreVotes from '@/components/votes/ScoreVotes.vue'
 
 export default Vue.extend({
   layout: 'protected',
   components: {
-    SelectVotes,
+    //SelectVotes,
     ScoreVotes,
   },
 })
