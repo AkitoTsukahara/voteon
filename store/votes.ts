@@ -1,12 +1,12 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import { firestore } from '@/plugins/firebase'
-import { ValueActionData } from '~/data/data'
+import { VoteTypes,ValueActionData } from '~/data/data'
   
 type ActionLists = ValueActionData[]
   
-type VoteSections = {
+type VoteSections = VoteTypes & {
     actionLists: ActionLists
-}
+  }
   
 type VoteContent = {
     actionId: number
@@ -18,6 +18,7 @@ type VoteContent = {
 type VoteContents = VoteContent[];
   
   export const state = () => ({
+    voteTypes: [] as VoteTypes[],
     voteSections: [] as VoteSections[],
     actionLists: [] as ValueActionData[],
     votedDataId: '',
@@ -42,12 +43,15 @@ type VoteContents = VoteContent[];
   })
   
   export const mutations = mutationTree(state, {
+    setVoteTypes(state, voteTypes: VoteTypes[]) {
+        state.voteTypes = voteTypes
+      },
     setActionLists(state, {actionLists, useVotedData}: {actionLists: ActionLists,
       useVotedData?: boolean}) {
       const defaultPoints = {
-        point1: 0,
-        point2: 0,
-        point3: 0
+        point1: 1,
+        point2: 1,
+        point3: 1
       }
       const points = useVotedData ? {} : defaultPoints
   
@@ -55,6 +59,27 @@ type VoteContents = VoteContent[];
         ...actionInfo,
         ...points
       }))
+
+      state.voteSections = state.voteTypes.map((voteType:VoteTypes) => {
+        const actionLists = state.actionLists.reduce(
+          (accumulator: ValueActionData[], currentValue) => {
+            const actionList: ValueActionData = JSON.parse(
+              JSON.stringify(currentValue)
+            )
+  
+            // targetValueが同一だったらactionListに追加する
+            if(voteType.targetValue === currentValue.valueAction.targetValues){
+              accumulator.push(currentValue)
+            }
+            return accumulator
+          },
+          []
+        )
+        return {
+          ...voteType,
+          actionLists,
+        }
+      })
     },
     setVotedDataId(state, votedDataId: string) {
       state.votedDataId = votedDataId
